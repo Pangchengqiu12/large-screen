@@ -1,0 +1,12 @@
+import { createApp } from 'vue';
+import './style.css';
+import './style/reset.scss';
+import App from './App.vue';
+import router from './router';
+import 'cesium/Build/Cesium/Widgets/widgets.css';
+import Area from '@/layouts/largeScreen/Area.vue';
+import Title from '@/layouts/largeScreen/Title.vue';
+const app = createApp(App);
+app.component('Area', Area);
+app.component('Title', Title);
+app.use(router).mount('#app');
