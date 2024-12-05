@@ -6,9 +6,12 @@
 
 <script setup lang="ts">
 import { useCesium } from '@/hooks/useCesium';
-const { initCesium } = useCesium();
+const { initCesium, destroyedViewer } = useCesium();
 onMounted(() => {
   initCesium();
+});
+onUnmounted(() => {
+  destroyedViewer();
 });
 </script>
 
