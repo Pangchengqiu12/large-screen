@@ -15,21 +15,35 @@
 // }
 // export { Resizer };
 import _ from 'lodash';
-const setSize = (container, camera, renderer) => {
+import { WebGLRenderer, PerspectiveCamera } from 'three';
+const setSize = (
+  container: HTMLElement,
+  camera: PerspectiveCamera,
+  renderer: WebGLRenderer
+) => {
   camera.aspect = container.clientWidth / container.clientHeight;
   camera.updateProjectionMatrix();
 
   renderer.setSize(container.clientWidth, container.clientHeight);
   renderer.setPixelRatio(window.devicePixelRatio);
 };
-function resize(container, camera, renderer, _that) {
+function resize(
+  container: HTMLElement,
+  camera: PerspectiveCamera,
+  renderer: WebGLRenderer,
+  _that: any
+) {
   setSize(container, camera, renderer);
   _that.onResize();
 }
 const dbResize = _.debounce(resize, 300);
 
 class Resizer {
-  constructor(container, camera, renderer) {
+  constructor(
+    container: HTMLElement,
+    camera: PerspectiveCamera,
+    renderer: WebGLRenderer
+  ) {
     // set initial size on load
     const _that = this;
     window.addEventListener('resize', () => {
