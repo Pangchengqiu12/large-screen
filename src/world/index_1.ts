@@ -98,7 +98,7 @@ import { createControls } from './systems/controls.js';
  */
 class World {
   camera;
-  scence;
+  scene;
   renderer;
   loop;
   cube;
@@ -107,9 +107,9 @@ class World {
   // 1. Create an instance of the World app
   constructor(container: HTMLElement) {
     this.camera = createCamera();
-    this.scence = createScene();
-    this.renderer = createRenderer(container, this.scence, this.camera);
-    this.loop = new Loop(this.camera, this.scence, this.renderer);
+    this.scene = createScene();
+    this.renderer = createRenderer(container, this.scene, this.camera);
+    this.loop = new Loop(this.camera, this.scene, this.renderer);
     // 2. Render the scene
     container.append(this.renderer.domElement);
 
@@ -121,7 +121,7 @@ class World {
     this.ambientLight = createLights().ambientLight;
     this.light = createLights().light;
     this.loop.updatables.push(controls);
-    this.scence.add(this.cube, this.ambientLight);
+    this.scene.add(this.cube, this.ambientLight);
     const resizer = new Resizer(container, this.camera, this.renderer);
     controls.addEventListener('change', () => {
       this.render();
@@ -132,7 +132,7 @@ class World {
   }
   render() {
     // draw a single frame
-    this.renderer.render(this.scence, this.camera);
+    this.renderer.render(this.scene, this.camera);
   }
   start() {
     this.loop.start();
