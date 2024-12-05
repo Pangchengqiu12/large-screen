@@ -20,6 +20,9 @@ dependencies:
   sass:
     specifier: ^1.80.6
     version: 1.80.6
+  three:
+    specifier: ^0.171.0
+    version: 0.171.0
   vite-plugin-cesium:
     specifier: ^1.2.23
     version: 1.2.23(cesium@1.123.0)(rollup@2.79.2)(vite@5.4.10)
@@ -31,6 +34,9 @@ dependencies:
     version: 4.4.5(vue@3.5.12)
 
 devDependencies:
+  '@types/lodash':
+    specifier: ^4.17.13
+    version: 4.17.13
   '@types/node':
     specifier: ^22.9.0
     version: 22.9.0
@@ -661,6 +667,10 @@ packages:
 
   /@types/estree@1.0.6:
     resolution: {integrity: sha512-AYnb1nQyY49te+VRAVgmzfcgjYS91mY5P0TKUDCLEM+gNnA+3T6rWITXRLYCpahpqSQbN5cE+gHpnPyXjHWxcw==}
+
+  /@types/lodash@4.17.13:
+    resolution: {integrity: sha512-lfx+dftrEZcdBPczf9d0Qv0x+j/rfNCMuC6OcfXmO8gkfeNAY88PgKUbvG56whcN23gc27yenwF6oJZXGFpYxg==}
+    dev: true
 
   /@types/node@22.9.0:
     resolution: {integrity: sha512-vuyHg81vvWA1Z1ELfvLko2c8f34gyA0zaic0+Rllc5lbCnbSyuvb2Oxpm6TAUAC/2xZN3QGqxBNggD1nNR2AfQ==}
@@ -1464,6 +1474,10 @@ packages:
     dependencies:
       js-tokens: 9.0.1
     dev: true
+
+  /three@0.171.0:
+    resolution: {integrity: sha512-Y/lAXPaKZPcEdkKjh0JOAHVv8OOnv/NDJqm0wjfCzyQmfKxV7zvkwsnBgPBKTzJHToSOhRGQAGbPJObT59B/PQ==}
+    dev: false
 
   /tinyglobby@0.2.10:
     resolution: {integrity: sha512-Zc+8eJlFMvgatPZTl6A9L/yht8QqdmUNtURHaKZLmKBE12hNPSrqNkUp2cs3M/UKmNVVAMFQYSjYIVHDjW5zew==}
