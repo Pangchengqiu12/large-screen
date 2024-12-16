@@ -6,11 +6,11 @@
 </template>
 
 <script setup lang="ts">
-import { useCesium } from '@/hooks/useCesium';
-const { destroyedViewer } = useCesium();
-onMounted(() => {
-  destroyedViewer();
-});
+// import { useCesium } from '@/hooks/useCesium';
+// const { destroyedViewer } = useCesium();
+// onMounted(() => {
+//   destroyedViewer();
+// });
 </script>
 
 <style scoped>

@@ -9,9 +9,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "3d-tiles-renderer": "^0.3.45",
+    "@amap/amap-jsapi-loader": "^1.0.1",
     "autofit.js": "^3.2.0",
     "cesium": "^1.123.0",
     "dayjs": "^1.11.13",
+    "gcoord": "^1.0.6",
     "lodash": "^4.17.21",
     "sass": "^1.80.6",
     "vite-plugin-cesium": "^1.2.23",

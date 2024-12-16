@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import 'cesium/Build/Cesium/Widgets/widgets.css'
-const store = useStore()
-import { useCesium } from '@/hooks/useCesium'
-useCesium()
+import 'cesium/Build/Cesium/Widgets/widgets.css';
+const store = useStore();
+// import { useCesium } from '@/hooks/useCesium'
+// useCesium()
 </script>
 <template>
   <div id="cesiumContainer"></div>

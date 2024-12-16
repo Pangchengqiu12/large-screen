@@ -6,12 +6,6 @@ const tdtUrl = 'https://t{s}.tianditu.gov.cn/';
 // 服务负载子域
 const subdomains = ['0', '1', '2', '3', '4', '5', '6', '7'];
 
-import gcoord from 'gcoord';
-
-import zhoushan from '@/assets/zhoushan.json'; //舟山
-
-import AmapMercatorTilingScheme from '@/utils/AmapMercatorTilingScheme.js';
-
 const config = {
   center: [122.106844, 30.019795],
   height: 50000,
@@ -65,15 +59,12 @@ export function useCesium() {
     // viewer.terrainProvider = await Cesium.createWorldTerrainAsync() // 加载地形
     // viewer.scene.globe.depthTestAgainstTerrain = true
     viewer.imageryLayers.removeAll();
-
     window.addEventListener('resize', resize);
-    // loadTianDi('img_w');
+    loadTianDi('img_w');
     // flyToCenter();
     // loadTianDi({
     //   type: 'cia_w',
     // });
-    loadGaode();
-    // loadBoundary();
     load3DTileset();
     return viewer;
   }
@@ -104,46 +95,7 @@ export function useCesium() {
     // 添加为地形图层
     viewer.scene.terrainProvider = terrainProvider;
   }
-  function loadGaode() {
-    if (!viewer) return;
-    const gaodeLayer = new Cesium.ImageryLayer(
-      // 图片的URL模板，其中{z},{x},{y}会被相应的瓦片级别、列和行索引替换
-      new Cesium.UrlTemplateImageryProvider({
-        url: 'https://webst0{s}.is.autonavi.com/appmaptile?style=6&x={x}&y={y}&z={z}', // 纯地标图(地名)
-        minimumLevel: 4,
-        maximumLevel: 18,
-        subdomains: subdomains,
-        // 瓦片服务的范围和分辨率设置
-        tilingScheme: new AmapMercatorTilingScheme(),
-        // // 用于缓存的瓦片名称的前缀
-        // credit: new Credit('https://webrd02.is.autonavi.com/appmaptile'),
-      })
-    );
 
-    viewer.imageryLayers.add(gaodeLayer);
-  }
-  /**
-   * ## 加载舟山边界
-   */
-  function loadBoundary() {
-    if (!viewer) return;
-    // 加载GeoJSON数据并设置边界样式
-    Cesium.GeoJsonDataSource.load(zhoushan, {
-      stroke: Cesium.Color.RED, // 边界线颜色
-      strokeWidth: 1, // 边界线宽度
-      fill: Cesium.Color.fromAlpha(Cesium.Color.BLUE, 0), // 填充颜色和透明度
-    })
-      .then((dataSource) => {
-        // 将GeoJSON数据添加到地图中
-        viewer.dataSources.add(dataSource);
-        // 让视图聚焦到GeoJSON区域
-        // viewer.zoomTo(dataSource);
-        viewer.flyTo(dataSource);
-      })
-      .catch((error) => {
-        console.error('加载GeoJSON失败:', error);
-      });
-  }
   /**
    * ## 加载3Dtiles
    */
@@ -158,21 +110,6 @@ export function useCesium() {
         skipLevelOfDetail: true,
       }
     );
-    const rootTile = tileset.root;
-    const center = rootTile.boundingVolume.center;
-    // 将 Cartesian3 转换为 Cartographic
-    var cartographic = Cesium.Cartographic.fromCartesian(center);
-
-    // 从 Cartographic 获取经度、纬度和高度
-    var longitude = Cesium.Math.toDegrees(cartographic.longitude); // 经度，单位：度
-    var latitude = Cesium.Math.toDegrees(cartographic.latitude); // 纬度，单位：度
-    var height = cartographic.height;
-    let result = gcoord.transform(
-      [longitude, latitude],
-      gcoord.WGS84,
-      gcoord.GCJ02
-    );
-
     viewer.scene.primitives.add(tileset);
     viewer.scene.globe.depthTestAgainstTerrain = false;
     viewer.flyTo(tileset);
